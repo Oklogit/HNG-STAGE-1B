@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Card</title>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            background: #f0f2f5;
+            font-family: Georgia, 'Times New Roman', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        /* === CARD === */
+        article[data-testid="test-profile-card"] {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+            max-width: 720px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* === TOP BANNER === */
+        .card-banner {
+            background: #1a1a2e;
+            height: 80px;
+        }
+
+        /* === MAIN LAYOUT === */
+        .card-body {
+            padding: 0 28px 28px;
+        }
+
+        /* Avatar + name row */
+        .card-top {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        figure {
+            flex-shrink: 0;
+            margin-top: -40px;
+        }
+
+        img[data-testid="test-user-avatar"] {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            object-fit: cover;
+            display: block;
+        }
+
+        figcaption { display: none; }
+
+        .name-time {
+            padding-bottom: 6px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        h2[data-testid="test-user-name"] {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a2e;
+            word-break: break-word;
+        }
+
+        /* Time */
+        .time-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .time-label {
+            font-size: 11px;
+            color: #888;
+            font-family: monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        span[data-testid="test-user-time"] {
+            font-size: 12px;
+            font-family: monospace;
+            color: #555;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: #e8e8e8;
+            margin-bottom: 20px;
+        }
+
+        /* Bio */
+        p[data-testid="test-user-bio"] {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 24px;
+        }
+
+        /* === TWO-COL SECTION === */
+        .card-lists {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        section h3 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+
+        ul[data-testid="test-user-hobbies"],
+        ul[data-testid="test-user-dislikes"] {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        ul[data-testid="test-user-hobbies"] li,
+        ul[data-testid="test-user-dislikes"] li {
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        ul[data-testid="test-user-hobbies"] li::before {
+            content: '✦';
+            font-size: 10px;
+            color: #1a1a2e;
+            flex-shrink: 0;
+        }
+
+        ul[data-testid="test-user-dislikes"] li::before {
+            content: '✕';
+            font-size: 10px;
+            color: #c0392b;
+            flex-shrink: 0;
+        }
+
+        /* === SOCIAL LINKS === */
+        nav[data-testid="test-user-social-links"] ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav[data-testid="test-user-social-links"] a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: Georgia, serif;
+            text-decoration: none;
+            border: 1.5px solid #e0e0e0;
+            color: #333;
+            background: #fff;
+            transition: all 0.2s ease;
+        }
+
+        nav[data-testid="test-user-social-links"] a:hover {
+            background: #1a1a2e;
+            color: #fff;
+            border-color: #1a1a2e;
+        }
+
+        nav[data-testid="test-user-social-links"] a:focus {
+            outline: 2px solid #1a1a2e;
+            outline-offset: 2px;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 500px) {
+            .card-lists { grid-template-columns: 1fr; }
+
+            .card-top { flex-direction: column; align-items: flex-start; }
+
+            figure { margin-top: -40px; }
+
+            h2[data-testid="test-user-name"] { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<article data-testid="test-profile-card">
+
+    <div class="card-banner" aria-hidden="true"></div>
+
+    <div class="card-body">
+
+        <div class="card-top">
+            <figure>
+                <img
+                    data-testid="test-user-avatar"
+                    src="https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul"
+                    alt="Profile photo of S. Abdul"
+                    width="90"
+                    height="90"
+                />
+                <figcaption>S. Abdul</figcaption>
+            </figure>
+
+            <div class="name-time">
+                <h2 data-testid="test-user-name" aria-label="User name: S. Abdul">S. Abdul</h2>
+                <div class="time-row">
+                    <span class="time-label">epoch ms:</span>
+                    <span
+                        data-testid="test-user-time"
+                        aria-live="polite"
+                        aria-atomic="true"
+                        aria-label="Current time in milliseconds"
+                    ></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <p data-testid="test-user-bio">
+            Backend developer learning the ropes of Node.js, REST APIs, and clean architecture.
+            Currently building projects through HNG and sharpening frontend skills on the side.
+            Enjoys breaking things in dev so they don't break in prod.
+        </p>
+
+        <div class="card-lists">
+            <section aria-labelledby="hobbies-heading">
+                <h3 id="hobbies-heading">Hobbies</h3>
+                <ul data-testid="test-user-hobbies" role="list">
+                    <li>Building side projects</li>
+                    <li>Reading tech blogs</li>
+                    <li>Gaming</li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="dislikes-heading">
+                <h3 id="dislikes-heading">Dislikes</h3>
+                <ul data-testid="test-user-dislikes" role="list">
+                    <li>Scope creep</li>
+                    <li>Merge conflicts</li>
+                    <li>Vague requirements</li>
+                </ul>
+            </section>
+        </div>
+
+        <nav data-testid="test-user-social-links" aria-label="Social media links">
+            <ul role="list">
+                <li>
+                    <a
+                        data-testid="test-user-social-twitter"
+                        href="https://twitter.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Twitter profile (opens in new tab)"
+                    >𝕏 Twitter</a>
+                </li>
+                <li>
+                    <a
+                        data-testid="test-user-social-github"
+                        href="https://github.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub profile (opens in new tab)"
+                    >⌥ GitHub</a>
+                </li>
+                <li>
+                    <a
+                        data-testid="test-user-social-linkedin"
+                        href="https://linkedin.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn profile (opens in new tab)"
+                    >in LinkedIn</a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</article>
+
+<script>
+    const timeEl = document.querySelector('[data-testid="test-user-time"]');
+
+    function updateTime() {
+        timeEl.textContent = Date.now();
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+</script>
+
+</body>
+</html>
