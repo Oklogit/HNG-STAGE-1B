@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Card</title>
+    <link rel="stylesheet" href="styles.css" />
+
+</head>
+
+<body>
+
+    <article data-testid="test-profile-card">
+
+        <div class="card-banner" aria-hidden="true"></div>
+
+        <div class="card-body">
+
+            <div class="card-top">
+                <figure>
+                    <img data-testid="test-user-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul"
+                        alt="Profile photo of S. Abdul" width="90" height="90" />
+                    <figcaption>S. Abdul</figcaption>
+                </figure>
+
+                <div class="name-time">
+                    <h2 data-testid="test-user-name" aria-label="User name: S. Abdul">S. Abdul</h2>
+                    <div class="time-row">
+                        <span class="time-label">epoch ms:</span>
+                        <span data-testid="test-user-time" aria-live="polite" aria-atomic="true"
+                            aria-label="Current time in milliseconds"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider" aria-hidden="true"></div>
+
+            <p data-testid="test-user-bio">
+                Backend developer learning the ropes of Node.js, REST APIs, and clean architecture.
+                Currently building projects through HNG and sharpening frontend skills on the side.
+                Enjoys breaking things in dev so they don't break in prod.
+            </p>
+
+            <div class="card-lists">
+                <section aria-labelledby="hobbies-heading">
+                    <h3 id="hobbies-heading">Hobbies</h3>
+                    <ul data-testid="test-user-hobbies" role="list">
+                        <li>Building side projects</li>
+                        <li>Reading tech blogs</li>
+                        <li>Gaming</li>
+                    </ul>
+                </section>
+
+                <section aria-labelledby="dislikes-heading">
+                    <h3 id="dislikes-heading">Dislikes</h3>
+                    <ul data-testid="test-user-dislikes" role="list">
+                        <li>Scope creep</li>
+                        <li>Merge conflicts</li>
+                        <li>Vague requirements</li>
+                    </ul>
+                </section>
+            </div>
+
+            <nav data-testid="test-user-social-links" aria-label="Social media links">
+                <ul role="list">
+                    <li>
+                        <a data-testid="test-user-social-twitter" href="https://twitter.com" target="_blank"
+                            rel="noopener noreferrer" aria-label="Twitter profile (opens in new tab)">𝕏 Twitter</a>
+                    </li>
+                    <li>
+                        <a data-testid="test-user-social-github" href="https://github.com" target="_blank"
+                            rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">⌥ GitHub</a>
+                    </li>
+                    <li>
+                        <a data-testid="test-user-social-linkedin" href="https://linkedin.com" target="_blank"
+                            rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">in LinkedIn</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </article>
+
+    <script>
+        const timeEl = document.querySelector('[data-testid="test-user-time"]');
+
+        function updateTime() {
+            timeEl.textContent = Date.now();
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+
+</body>
+
+</html>

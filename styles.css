@@ -1,0 +1,223 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #f0f2f5;
+    font-family: Georgia, "Times New Roman", serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* === CARD === */
+article[data-testid="test-profile-card"] {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    max-width: 720px;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* === TOP BANNER === */
+.card-banner {
+    background: #1a1a2e;
+    height: 80px;
+}
+
+/* === MAIN LAYOUT === */
+.card-body {
+    padding: 0 28px 28px;
+}
+
+/* Avatar + name row */
+.card-top {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+figure {
+    flex-shrink: 0;
+    margin-top: -40px;
+}
+
+img[data-testid="test-user-avatar"] {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+    object-fit: cover;
+    display: block;
+}
+
+figcaption {
+    display: none;
+}
+
+.name-time {
+    padding-bottom: 6px;
+    flex: 1;
+    min-width: 0;
+}
+
+h2[data-testid="test-user-name"] {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+    word-break: break-word;
+}
+
+/* Time */
+.time-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.time-label {
+    font-size: 11px;
+    color: #888;
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+span[data-testid="test-user-time"] {
+    font-size: 12px;
+    font-family: monospace;
+    color: #555;
+}
+
+/* Divider */
+.divider {
+    height: 1px;
+    background: #e8e8e8;
+    margin-bottom: 20px;
+}
+
+/* Bio */
+p[data-testid="test-user-bio"] {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 24px;
+}
+
+/* === TWO-COL SECTION === */
+.card-lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+section {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+section h3 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #888;
+    margin-bottom: 12px;
+}
+
+ul[data-testid="test-user-hobbies"],
+ul[data-testid="test-user-dislikes"] {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+ul[data-testid="test-user-hobbies"] li,
+ul[data-testid="test-user-dislikes"] li {
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+ul[data-testid="test-user-hobbies"] li::before {
+    content: "✦";
+    font-size: 10px;
+    color: #1a1a2e;
+    flex-shrink: 0;
+}
+
+ul[data-testid="test-user-dislikes"] li::before {
+    content: "✕";
+    font-size: 10px;
+    color: #c0392b;
+    flex-shrink: 0;
+}
+
+/* === SOCIAL LINKS === */
+nav[data-testid="test-user-social-links"] ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+nav[data-testid="test-user-social-links"] a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: Georgia, serif;
+    text-decoration: none;
+    border: 1.5px solid #e0e0e0;
+    color: #333;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+
+nav[data-testid="test-user-social-links"] a:hover {
+    background: #1a1a2e;
+    color: #fff;
+    border-color: #1a1a2e;
+}
+
+nav[data-testid="test-user-social-links"] a:focus {
+    outline: 2px solid #1a1a2e;
+    outline-offset: 2px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 500px) {
+    .card-lists {
+        grid-template-columns: 1fr;
+    }
+
+    .card-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    figure {
+        margin-top: -40px;
+    }
+
+    h2[data-testid="test-user-name"] {
+        font-size: 20px;
+    }
+}
